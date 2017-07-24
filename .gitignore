@@ -1,0 +1,8 @@
+MNIST_data/
+data/
+fit/
+input_data/
+pic/
+testpic/
+*.npy
+.gitignore
