@@ -5,16 +5,17 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 import tensorflow as tf
+from helper import *
 
 logs_path = "/tmp/mnist/2"
 # 定义网络超参数
 learning_rate = 0.001
-training_iters = 2000
+training_iters = 20000
 batch_size = 64
-display_step = 20
+display_step = 10
 
 # 定义网络参数
-n_input = 784 # 输入的维度
+n_input = 784# 输入的维度
 n_classes = 10 # 标签的维度
 dropout = 0.8 # Dropout 的概率
 
@@ -109,16 +110,21 @@ accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 # 初始化所有的共享变量
 init = tf.initialize_all_variables()
 
+
 # 开启一个训练
+ds = Dataset()
+testdata, testlabels = ds.img2matrix('pic', 0.8)
+
 with tf.Session() as sess:
     writer = tf.summary.FileWriter(logs_path, sess.graph)
     sess.run(init)
     step = 1
     # Keep training until reach max iterations
     while step * batch_size < training_iters:
-        batch_xs, batch_ys = mnist.train.next_batch(batch_size)
-
+        #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
+        batch_xs, batch_ys = ds.next_batch(batch_size)
         # 获取批数据
+
         sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys, keep_prob: dropout})
         if step % display_step == 0:
             # 计算精度
@@ -129,4 +135,4 @@ with tf.Session() as sess:
         step += 1
     print "Optimization Finished!"
     # 计算测试精度
-    print "Testing Accuracy:", sess.run(accuracy, feed_dict={x: mnist.test.images[:256], y: mnist.test.labels[:256], keep_prob: 1.})
+    print "Testing Accuracy:", sess.run(accuracy, feed_dict={x: ds.testdata, y: ds.testlabels, keep_prob: 1.})
