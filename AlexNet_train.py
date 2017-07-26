@@ -115,6 +115,11 @@ init = tf.initialize_all_variables()
 ds = Dataset()
 testdata, testlabels = ds.img2matrix('pic', 0.8)
 
+ds1 = Dataset()
+ds1.img2matrix('samples', 1)
+testdata, testlabels = ds1.next_batch(1984)
+
+#ds.load_point_data(0.8)
 with tf.Session() as sess:
     writer = tf.summary.FileWriter(logs_path, sess.graph)
     sess.run(init)
@@ -135,4 +140,4 @@ with tf.Session() as sess:
         step += 1
     print "Optimization Finished!"
     # 计算测试精度
-    print "Testing Accuracy:", sess.run(accuracy, feed_dict={x: ds.testdata, y: ds.testlabels, keep_prob: 1.})
+    print "Testing Accuracy:", sess.run(accuracy, feed_dict={x: testdata, y: testlabels, keep_prob: 1.})

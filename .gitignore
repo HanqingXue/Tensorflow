@@ -5,4 +5,5 @@ input_data/
 pic/
 testpic/
 *.npy
-.gitignore
+.gitignor
+samples/
