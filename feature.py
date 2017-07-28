@@ -235,7 +235,7 @@ def testModel(trainData, trainLabel, testData, testLabel):
 	 predictions = classifier.predict(np.array(testData))
 	 report = classification_report(testLabel, predictions)
 	 print report
-
+'''
 if __name__ == '__main__':
 	trainData,  trainLabel = dataUtil('train.txt')
 	classify(trainData, trainLabel)
@@ -251,3 +251,4 @@ if __name__ == '__main__':
 	plt.xlim(0, 750)
 	plt.title("Histogram with 'auto' bins")
 	plt.show()
+'''

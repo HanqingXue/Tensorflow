@@ -115,6 +115,7 @@ init = tf.initialize_all_variables()
 ds = Dataset()
 testdata, testlabels = ds.img2matrix('pic', 0.8)
 
+
 ds1 = Dataset()
 ds1.img2matrix('samples', 1)
 testdata, testlabels = ds1.next_batch(1984)
