@@ -5,7 +5,9 @@ sampleis/*
 fit/*
 testpic/*
 data/*
-
-
-
+MNIST_data/*
+dist/MNIST_data/*
+dist/.idea/*
+*.pyc
+.gitignore
 

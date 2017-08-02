@@ -2,7 +2,11 @@
 import tensorflow as tf
 
 
-cluster = tf.train.ClusterSpec({"local": ["172.20.182.232:2222", "172.20.182.232:2223", "172.20.182.232:2224"]})
+cluster = tf.train.ClusterSpec({"local": ["172.20.182.232:2222",
+                                          "172.20.182.232:2223",
+                                          "172.20.182.232:2224",
+                                          "172.20.182.232:2225",
+                                          "172.20.182.232:2226"]})
 
 x = tf.placeholder(tf.float32)
 W = tf.Variable(tf.zeros([1]))
