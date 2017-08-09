@@ -4,7 +4,9 @@ from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf 
 from sampleutil import *
 import random
+import time
 
+start = time.time()
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 sess = tf.InteractiveSession()
 
@@ -74,3 +76,5 @@ for i in range(1000):
 
 print "Test accuracy %g " % accuracy.eval(feed_dict={
 	x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
+end = time.time()
+print end - start

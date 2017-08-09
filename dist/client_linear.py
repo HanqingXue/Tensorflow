@@ -6,14 +6,17 @@ cluster = tf.train.ClusterSpec({"local": ["172.20.182.232:2222",
                                           "172.20.182.232:2223",
                                           "172.20.182.232:2224",
                                           "172.20.182.232:2225",
-                                          "172.20.182.232:2226"]})
+                                          "172.20.182.232:2226",
+                                          "172.20.182.232:2227",
+                                          "172.20.182.232:2228"
+                                          ]})
 
 x = tf.placeholder(tf.float32)
 W = tf.Variable(tf.zeros([1]))
 b = tf.Variable(tf.zeros([1]))
 y_ = tf.placeholder(tf.float32)
 
-with tf.device("/job:local/task:1"):
+with tf.device("/job:local/task:3"):
     y = W * x + b
 
 with tf.device("/job:local/task:0"):
